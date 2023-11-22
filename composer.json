@@ -5,7 +5,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Youdaman\\Oauth2Test\\": "src/"
+            "Youdaman\\Oauth2Test\\": "public/"
         }
     },
     "authors": [
@@ -15,7 +15,6 @@
         }
     ],
     "scripts": {
-        "test": "phpunit",
-        "web": "php -S localhost:8080 -t src -c php.ini"
+        "test": "codecept run AcceptancePhpBrowser:Foo --steps -f -v"
     }
 }
