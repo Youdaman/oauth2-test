@@ -18,14 +18,22 @@ $client_secret = 'Ald5C3xay0KjOd1cuMlEvKFw7LC8ALQas28hu5wvNhClE9li';
 $redirect_uri = 'https://empty.wp';
 // $redirect_uri = 'https://203b-115-70-254-53.ngrok-free.app';
 
-$provider = new \League\OAuth2\Client\Provider\GenericProvider(array(
-	'clientId'                => $client_id,
-	'clientSecret'            => $client_secret,
-	'redirectUri'             => $redirect_uri,
-	'urlAuthorize'            => 'https://test.wp/wp-json/oauth2/authorize',
-	'urlAccessToken'          => 'https://test.wp/wp-json/oauth2/access_token',
-	'urlResourceOwnerDetails' => 'https://test.wp/wp-json/wp/v2/posts',
-));
+$client = new \GuzzleHttp\Client( array( 'verify' => 'S:\Local Sites\empty\app\cacert.pem' ) );
+// $client = new \GuzzleHttp\Client( array( 'verify' => 'S:\Local Sites\empty\app\public\wp-includes\certificates\ca-bundle.crt' ) );
+
+$provider = new \League\OAuth2\Client\Provider\GenericProvider(
+	array(
+		'clientId'                => $client_id,
+		'clientSecret'            => $client_secret,
+		'redirectUri'             => $redirect_uri,
+		'urlAuthorize'            => 'https://test.wp/wp-json/oauth2/authorize',
+		'urlAccessToken'          => 'https://test.wp/wp-json/oauth2/access_token',
+		'urlResourceOwnerDetails' => 'https://test.wp/wp-json/wp/v2/posts',
+	),
+	array(
+		'httpClient'              => $client,
+	)
+);
 
 // If we don't have an authorization code then get one
 if ( !isset( $_GET['code'] ) ) {
