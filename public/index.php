@@ -15,7 +15,7 @@ session_start();
 
 $client_id = 'erzelqpu26lg';
 $client_secret = 'Ald5C3xay0KjOd1cuMlEvKFw7LC8ALQas28hu5wvNhClE9li';
-$redirect_uri = 'http://localhost:8080';
+$redirect_uri = 'https://empty.wp';
 // $redirect_uri = 'https://203b-115-70-254-53.ngrok-free.app';
 
 $provider = new \League\OAuth2\Client\Provider\GenericProvider(array(
